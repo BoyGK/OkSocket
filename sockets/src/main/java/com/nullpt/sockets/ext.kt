@@ -14,6 +14,7 @@ internal object Config {
     var heartBody = byteArrayOf(0)
     var heartTime = 10000
 
+    var connection = SocketClient.Connection.SOCKET
 }
 
 fun log(message: () -> String) {

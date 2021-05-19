@@ -24,7 +24,12 @@ internal class SocketNetWork {
         log { "请求过滤器拼接；链路初始化；" }
         interceptors += EventDispatchInterceptor()
         interceptors += ThreadDispatchInterceptor()
-        interceptors += SocketInterceptor()
+        //按连接方式选取
+        interceptors += when (Config.connection) {
+            SocketClient.Connection.SOCKET -> SocketInterceptor()
+            SocketClient.Connection.BLUETOOTH -> BlueToothInterceptor()
+            SocketClient.Connection.BLUETOOTH_LE -> BlueToothLEInterceptor()
+        }
         realCallInterceptorChain = RealCallInterceptorChain()
     }
 

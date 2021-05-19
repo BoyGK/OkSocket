@@ -84,9 +84,31 @@ class SocketClient : Runnable {
             return this
         }
 
+        fun connection(connection: Connection): Builder {
+            Config.connection = connection
+            return this
+        }
+
         fun build(): SocketClient {
             return SocketClient()
         }
+    }
+
+    enum class Connection {
+        /**
+         * Socket
+         */
+        SOCKET,
+
+        /**
+         * bluetooth
+         */
+        BLUETOOTH,
+
+        /**
+         * bluetooth le
+         */
+        BLUETOOTH_LE
     }
 
     /**

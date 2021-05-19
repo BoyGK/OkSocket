@@ -12,6 +12,21 @@ data class SocketResponse(
     companion object {
 
         /**
+         * 保留协议号：蓝牙连接成功
+         */
+        const val PROTOCOL_BLUETOOTH_CONNECTED = -5
+
+        /**
+         * 保留协议号：蓝牙连接
+         */
+        const val PROTOCOL_BLUETOOTH_CONNECT = -4
+
+        /**
+         * 保留协议号：蓝牙服务
+         */
+        const val PROTOCOL_BLUETOOTH_SERVICE = -3
+
+        /**
          * 保留协议号：失败
          */
         const val PROTOCOL_ERROR = -1

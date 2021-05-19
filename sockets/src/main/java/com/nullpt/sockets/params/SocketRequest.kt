@@ -1,10 +1,24 @@
 package com.nullpt.sockets.params
 
+import android.bluetooth.BluetoothDevice
+
 data class SocketRequest(
     val protocolId: Int,
-    val body: ByteArray
+    val body: ByteArray,
+    var device: BluetoothDevice? = null,
+    var secure: Boolean? = null
 ) {
     companion object {
+        /**
+         * 保留协议号：蓝牙连接
+         */
+        const val PROTOCOL_BLUETOOTH_CONNECT = -4
+
+        /**
+         * 保留协议号：蓝牙服务
+         */
+        const val PROTOCOL_BLUETOOTH_SERVICE = -3
+
         /**
          * 保留协议号：重连
          */

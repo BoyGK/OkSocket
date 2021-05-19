@@ -8,7 +8,7 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        connectSocket(SocketClient.Builder())
+//        connectSocket(SocketClient.Builder())
     }
 
 }

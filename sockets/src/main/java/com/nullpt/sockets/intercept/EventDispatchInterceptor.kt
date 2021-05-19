@@ -1,5 +1,6 @@
 package com.nullpt.sockets.intercept
 
+import com.nullpt.sockets.params.SocketRequest
 import com.nullpt.sockets.params.SocketResponse
 
 /**
@@ -12,12 +13,16 @@ class EventDispatchInterceptor : Interceptor {
      */
     private val eventMap = LinkedHashMap<Int, MutableSet<(response: SocketResponse) -> Unit>>()
 
+    /**
+     * 特定协议号不需要注册响应
+     */
+    private val unProtocolIds = mutableListOf(SocketRequest.PROTOCOL_RECONNECT)
+
     override fun station(chain: Interceptor.Chain) {
         val request = chain.request()
         val protocolId = request.protocolId
 
-        //大于等于0的协议，视为正常协议号
-        if (protocolId >= 0) {
+        if (!unProtocolIds.contains(protocolId)) {
             val responseCall = chain.response()
             if (eventMap[protocolId] == null) {
                 eventMap[protocolId] = mutableSetOf(responseCall)
@@ -33,12 +38,9 @@ class EventDispatchInterceptor : Interceptor {
 
         val protocolId = response.protocolId
 
-        //大于等于0的协议，视为正常协议号
-        if (protocolId >= 0) {
-            eventMap[protocolId]?.let {
-                it.forEach { responseCall ->
-                    responseCall.invoke(response)
-                }
+        eventMap[protocolId]?.let {
+            it.forEach { responseCall ->
+                responseCall.invoke(response)
             }
         }
     }

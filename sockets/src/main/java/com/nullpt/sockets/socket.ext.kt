@@ -8,8 +8,8 @@ private var socketClient: SocketClient? = null
 /**
  * 开启长连接服务
  */
-fun connectSocket(builder: SocketClient.Builder) {
-    socketClient = builder.build()
+fun connectSocket(client: SocketClient) {
+    socketClient = client
 }
 
 /**
