@@ -15,6 +15,7 @@ class ViewActivity : AppCompatActivity() {
 
     val handler = Handler(Looper.getMainLooper())
 
+    //轻轻的你来了，点个赞再走呗~
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view)
