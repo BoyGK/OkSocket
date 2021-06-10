@@ -2,8 +2,8 @@ package com.nullpt.algrothm;
 
 /**
  * 合并有序链表
- *
- *
+ * <p>
+ * <p>
  * weiwan
  */
 public class t33 {
@@ -40,13 +40,17 @@ public class t33 {
                 Node t2 = node.right;
                 head.right = node;
                 node.right = t1;
+                head = t1.right;
                 t1.right = t2;
+                node = t2.right;
             } else {
                 Node t1 = head.right;
                 Node t2 = node.right;
                 node.right = head;
                 head.right = t2;
+                node = t2.right;
                 t2.right = t1;
+                head = t1.right;
             }
 
             if (head.right == null) {
@@ -56,8 +60,6 @@ public class t33 {
             if (node.right == null) {
                 break;
             }
-            head = head.right;
-            node = node.right;
         }
     }
 }

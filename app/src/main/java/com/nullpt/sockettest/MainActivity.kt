@@ -6,9 +6,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.SnapHelper
 import com.nullpt.sockets.*
 import com.nullpt.sockets.params.SocketRequest
 import com.nullpt.sockets.params.SocketResponse
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,6 +23,9 @@ class MainActivity : AppCompatActivity() {
 //            log { "2 : ${Thread.currentThread().name}\n ${String(it.body)}" }
 //        }
 
+
+        ArrayList<String>()
+        Collections.enumeration<String>(mutableListOf("1"))
         //蓝牙测试
         val client = SocketClient.Builder()
             .connection(SocketClient.Connection.BLUETOOTH)
@@ -72,7 +78,6 @@ class MainActivity : AppCompatActivity() {
 //        executeRequest(SocketRequest(8, "client 8 ".toByteArray())) {
 //            log { "8 : ${Thread.currentThread().name}\n ${String(it.body)}" }
 //        }
-
 
         //连接目标设备蓝牙
         val blAdapter = BluetoothAdapter.getDefaultAdapter()

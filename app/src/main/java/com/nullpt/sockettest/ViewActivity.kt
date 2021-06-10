@@ -5,26 +5,34 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.viewbinding.ViewBinding
 import com.nullpt.sockets.log
+import com.nullpt.sockettest.databinding.ActivityViewBinding
 
-class ViewActivity : AppCompatActivity() {
+class ViewActivity : AppCompatActivity(), Clickable by DefaultClick() {
 
     val handler = Handler(Looper.getMainLooper())
+
+    private val viewBinding by lazy { ActivityViewBinding.inflate(LayoutInflater.from(this)) }
 
     //轻轻的你来了，点个赞再走呗~
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_view)
+        setContentView(viewBinding.root)
 
-
-        val bgq = findViewById<BGQView>(R.id.bgq)
-        bgq.setOnClickListener {
+        viewBinding.bgq.setOnClickListener {
             Toast.makeText(this, "123456", Toast.LENGTH_SHORT).show()
         }
+
+        println(isClick())
+
+//        System.gc()
+//        Runtime.getRuntime().gc()
 
 //        val view = View(this)
 //        handler.post {
@@ -44,4 +52,15 @@ class ViewActivity : AppCompatActivity() {
 //            PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 //        pendingIntent.send()
     }
+}
+
+interface Clickable {
+    fun isClick(): Boolean
+}
+
+class DefaultClick : Clickable {
+    override fun isClick(): Boolean {
+        return true
+    }
+
 }

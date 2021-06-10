@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SocketTest</string>
+    <string name="lala">123</string>
 </resources>

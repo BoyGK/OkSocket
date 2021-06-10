@@ -11,4 +11,16 @@ class App : Application() {
 //        connectSocket(SocketClient.Builder())
     }
 
+    override fun onTrimMemory(level: Int) {
+        super.onTrimMemory(level)
+    }
+
+    override fun onLowMemory() {
+        super.onLowMemory()
+    }
+
+    override fun onTerminate() {
+        super.onTerminate()
+    }
+
 }
